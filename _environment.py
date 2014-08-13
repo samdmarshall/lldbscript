@@ -1,8 +1,16 @@
 import os
 
+
 DEBUG_LOG_ENABLED_KEY = 'DEBUG_LOG_ENABLED';
 
-ENVIRONMENT_VALUE_MAP = {DEBUG_LOG_ENABLED_KEY: str(False)};
+ENVIRONMENT_VALUE_MAP = {
+    DEBUG_LOG_ENABLED_KEY: str(False)
+};
+
+
+def debug_log_key():
+    global DEBUG_LOG_ENABLED_KEY;
+    return DEBUG_LOG_ENABLED_KEY;
 
 
 def set_variable(name, value):

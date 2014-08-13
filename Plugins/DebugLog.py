@@ -14,8 +14,8 @@ class DebugLog():
     
     
     def enable(self):
-        _environment.set_variable('DEBUG_LOG_ENABLED', str(True));
+        _environment.set_variable(_environment.debug_log_key(), str(True));
     
     
     def disable(self):
-        _environment.set_variable('DEBUG_LOG_ENABLED', str(False));
+        _environment.set_variable(_environment.debug_log_key(), str(False));
