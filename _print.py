@@ -1,6 +1,7 @@
 import _environment
 import _colours
 
+
 def debuglog(args):
     if _environment.debuglog() == True:
         fmt(args);
@@ -8,11 +9,9 @@ def debuglog(args):
 
 def fmt(args):
     line = "";
-    
     for item in args:
         item_type = item['type'];
         item_data = item['data'];
-        
         if item_type == 'colour':
             colour_value = item_data['colour'];
             state_value = item_data['state'];

@@ -1,5 +1,6 @@
 import os
 
+
 def setup_environment():
     set_variable('DEBUG_LOG_ENABLED', False);
 

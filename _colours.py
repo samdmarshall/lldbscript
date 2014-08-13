@@ -1,5 +1,6 @@
 import _environment
 
+
 COLOUR_CODES = {
     'reset': (0, 0),
     'bold' : (22, 1),
@@ -17,6 +18,7 @@ COLOUR_CODES = {
     'white': (47, 37),
     'default': (49, 39)
 };
+
 
 def term_supports_colour():
     return _environment.has_variable('TERM'); # this works for OS X, not sure about other platforms

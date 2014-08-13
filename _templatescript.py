@@ -2,7 +2,9 @@ import os
 import _lldbcmd
 import _file
 
+
 SCRIPTS_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Scripts');
+
 
 def load_scripts(environment_dict):
     if _file.file_exists(SCRIPTS_PATH) == False:
