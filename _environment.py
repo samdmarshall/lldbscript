@@ -1,21 +1,28 @@
 import os
 
+DEBUG_LOG_ENABLED_KEY = 'DEBUG_LOG_ENABLED';
 
-def setup_environment():
-    set_variable('DEBUG_LOG_ENABLED', False);
+ENVIRONMENT_VALUE_MAP = {DEBUG_LOG_ENABLED_KEY: str(False)};
 
 
 def set_variable(name, value):
-   os.putenv(name, value);
+    global ENVIRONMENT_VALUE_MAP;
+    ENVIRONMENT_VALUE_MAP[name] = value;
 
 
 def has_variable(name):
-    return os.environ.has_key(name);
+    global ENVIRONMENT_VALUE_MAP;
+    return name in ENVIRONMENT_VALUE_MAP;
 
 
 def get_variable(name):
-    return os.environ[name];
+    global ENVIRONMENT_VALUE_MAP;
+    return ENVIRONMENT_VALUE_MAP[name]
 
 
 def debuglog():
-    return get_variable('DEBUG_LOG_ENABLED');
+    global ENVIRONMENT_VALUE_MAP;
+    if has_variable(DEBUG_LOG_ENABLED_KEY):
+        return get_variable(DEBUG_LOG_ENABLED_KEY);
+    else:
+        return False;

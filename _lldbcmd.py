@@ -1,10 +1,11 @@
 import lldb
 import string
 
+
 def execute_in_lldb(ignore_breakpoints, fetch_dynamic, timeout_value, all_threads, expr):
     frame = lldb.debugger.GetSelectedTarget().GetProcess().GetSelectedThread().GetSelectedFrame();
     if not frame:
-        return 'error: invalid frame';\
+        return 'error: invalid frame';
     expr_options = lldb.SBExpressionOptions();
     expr_options.SetIgnoreBreakpoints(ignore_breakpoints);
     expr_options.SetFetchDynamicValue(fetch_dynamic);

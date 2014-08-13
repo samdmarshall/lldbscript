@@ -2,11 +2,6 @@ import _environment
 import _colours
 
 
-def debuglog(args):
-    if _environment.debuglog() == True:
-        fmt(args);
-
-
 def fmt(args):
     line = "";
     for item in args:
@@ -44,3 +39,8 @@ def String(formatter, value):
             'display': value
         }
     };
+
+
+def debuglog(args):
+    if _environment.debuglog() == str(True):
+        fmt(args);

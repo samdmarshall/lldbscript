@@ -1,4 +1,4 @@
-import _environment
+import os
 
 
 COLOUR_CODES = {
@@ -21,7 +21,7 @@ COLOUR_CODES = {
 
 
 def term_supports_colour():
-    return _environment.has_variable('TERM'); # this works for OS X, not sure about other platforms
+    return os.environ.has_key('TERM'); # this works for OS X, not sure about other platforms
 
 
 # name - name of the colour from the COLOUR_CODES dict
