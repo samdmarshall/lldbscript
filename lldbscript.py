@@ -8,7 +8,7 @@ import _print
 import _lldbcmd
 import _templatescript
 
-CORE_SCRIPT_NAMES = ['_colours.py', '_string.py', '_print.py', '_lldbcmd.py', '_environment.py', '_templatescript.py'];
+CORE_SCRIPT_NAMES = ['_colours.py', '_string.py', '_print.py', '_lldbcmd.py', '_environment.py', '_templatescript.py', '_file.py'];
 
 def build_script_path(script_name):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), script_name);
