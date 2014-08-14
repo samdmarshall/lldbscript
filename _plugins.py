@@ -1,11 +1,20 @@
 import os
 import importlib
 import _file
+import _print
 
 
 PLUGINS_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Plugins');
 
 MODULE_MAP = {};
+
+
+def could_load_plugin(name):
+    global MODULE_MAP;
+    if hasattr(__import__(name), name) == True:
+        MODULE_MAP[name] = __import__(name);
+    else:
+        _print.debuglog([_print.Colour('red',True), _print.String('Could not load module \'%s\'', name), _print.Colour('reset', True)]);
 
 
 def load_plugins(environment_dict):
@@ -18,10 +27,10 @@ def load_plugins(environment_dict):
         if not plugin.startswith('.') and os.path.isfile(os.path.join(PLUGINS_PATH, plugin)):
             name = _file.get_file_name(plugin)
             if len(environment_dict) != 0 and not name in environment_dict:
-                MODULE_MAP[name] = __import__(name);
+                could_load_plugin(name);
             else:
                 if not name in MODULE_MAP:
-                    MODULE_MAP[name] = __import__(name);
+                    could_load_plugin(name);
                 else:
                     reload(MODULE_MAP[name]);
             

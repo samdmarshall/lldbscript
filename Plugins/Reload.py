@@ -12,7 +12,7 @@ class reload():
     
     def usage(self):
         return {
-            'plugins': 'reloads plugins found in \'Plguins\' directory',
+            'plugins': 'reloads plugins found in \'Plugins\' directory',
             'scripts': 'reloads scripts found in \'Scripts\' directory',
             'core': 'reloads dbscript core scripts'
         };
@@ -21,7 +21,7 @@ class reload():
     def print_usage(self):
         usage_dict = self.usage();
         keys = usage_dict.keys();
-        print 'reload [%s]' % string.join(keys, '|');
+        print '%s [%s]' % (type(self).__name__, string.join(keys, '|'));
         for key in keys:
             print '\t%s - %s' % (key, usage_dict[key]);
     
