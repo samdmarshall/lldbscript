@@ -25,8 +25,9 @@ class log():
     
     
     def print_object(self, args):
+        string_args = string.join(args, ' ');
         output_str = '';
-        result = _lldbcmd.execute('po', args);
+        result = _lldbcmd.execute('po', string_args);
         if result.Succeeded() == True:
             output_str += result.GetOutput();
         else:
@@ -35,8 +36,9 @@ class log():
     
     
     def print_scalar(self, args):
+        string_args = string.join(args, ' ');
         output_str = '';
-        result = _lldbcmd.execute('p', args);
+        result = _lldbcmd.execute('p', string_args);
         if result.Succeeded() == True:
             output_str += result.GetOutput();
         else:
