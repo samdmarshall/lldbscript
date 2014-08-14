@@ -111,14 +111,19 @@ class macho():
                 uuid = primary_image[0];
                 offset = primary_image[1];
                 path = primary_image[2];
-                error1 = lldb.SBError();
-                error2 = lldb.SBError();
-                cpu_type_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+4, 4, error1));
-                cpu_sub_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+8, 4, error2));
-                if error1.Success() == True and error2.Success() == True:
-                    print 'got cpu type and subtype';
-                else:
-                    print 'error #1: ' + error1.GetCString() + '\nerror #2: ' + error2.GetCString();
+                header = [];
+                header_offset = 0;
+                for offset_index in range(0, 7):
+                    error = lldb.SBError();
+                    item = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+header_offset, 4, error));
+                    header_offset += 4;
+                    if error.Success() == True:
+                        header += [item];
+                    else:
+                        print error;
+                
+                if len(header) == 7:
+                    print 'parsed header!';
         
         else:
             print 'Invalid Process';
