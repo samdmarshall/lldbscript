@@ -18,8 +18,13 @@ def execute_in_lldb(ignore_breakpoints, fetch_dynamic, timeout_value, all_thread
         return expr_sbvalue.error;
 
 
-def execute_command(cmd, name, evaltype, value):
-    command = string.join(('command', cmd, name, evaltype, value), ' ');
-    ci =  lldb.debugger.GetCommandInterpreter();    
+def execute(cmd, args):
+    command = cmd + ' ' + string.join(args, ' ');
+    ci = lldb.debugger.GetCommandInterpreter();
     result = lldb.SBCommandReturnObject();
     ci.HandleCommand(command, result);
+    return result;
+
+
+def execute_command(cmd, name, evaltype, value):
+    return execute('command', [cmd, name, evaltype, value]);

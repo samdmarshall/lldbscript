@@ -1,7 +1,8 @@
 import _environment
+import string
 
 
-class DebugLog():
+class debuglog():
     def commands(self):
         return {
             'on': self.enable, 
@@ -10,7 +11,18 @@ class DebugLog():
     
     
     def usage(self):
-        print "DebugLog [on|off]";
+        return {
+            'on': 'enables debug logging',
+            'off': 'disables debug logging'
+        };
+    
+    
+    def print_usage(self):
+        usage_dict = self.usage();
+        keys = usage_dict.keys();
+        print 'debuglog [%s]' % string.join(keys, '|');
+        for key in keys:
+            print '\t%s - %s' % (key, usage_dict[key]);
     
     
     def enable(self):

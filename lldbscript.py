@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import os
-
 import _string
 import _colours
 import _print
@@ -24,7 +23,7 @@ def build_script_path(script_name):
 
 def reload_scripts(environment_dict):
     for script in CORE_SCRIPT_NAMES:
-        if not _file.get_file_name(script) in environment_dict:
+        if len(environment_dict) == 0 or not _file.get_file_name(script) in environment_dict:
             script_path = build_script_path(script);
             _lldbcmd.execute_command('script', '', 'import', script_path);
 
