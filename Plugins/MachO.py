@@ -94,28 +94,31 @@ class macho():
     def info(self):
         target = lldb.debugger.GetSelectedTarget();
         executable = target.GetExecutable();
-        if executable.IsValid() == True:
-            module = target.FindModule(executable);
-            if module.IsValid() == True:
-                image_list_string = _lldbcmd.execute('image', ['list']).GetOutput();
-                image_list_raw = _string.split_by_char(image_list_string, '\n');
-                primary_image = [];
-                image_list = [];
-                for image_string in image_list_raw:
-                    image_details = _string.split_args(re.sub('\[([ ]|[0-9]){3}\] ', '', image_string));
-                    if len(image_details) == 3:
-                        image_list += image_details;
-                        if image_details[2] == executable.fullpath:
-                            primary_image = image_details;
-                
-                if len(primary_image) == 3:
-                    uuid = primary_image[0];
-                    offset = primary_image[1];
-                    path = primary_image[2];
-                    error1 = lldb.SBError();
-                    error2 = lldb.SBError();
-                    cpu_type_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+4, 4, error1));
-                    cpu_sub_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+8, 4, error2));
-                    if error1.Success() == True and error2.Success() == True:
-                        print 'got cpu type and subtype';
-                    
+        module = target.FindModule(executable);
+        if executable.IsValid() == True and module.IsValid() == True:
+            image_list_string = _lldbcmd.execute('image', ['list']).GetOutput();
+            image_list_raw = _string.split_by_char(image_list_string, '\n');
+            primary_image = [];
+            image_list = [];
+            for image_string in image_list_raw:
+                image_details = _string.split_args(re.sub('\[([ ]|[0-9]){3}\] ', '', image_string));
+                if len(image_details) == 3:
+                    image_list += image_details;
+                    if image_details[2] == executable.fullpath:
+                        primary_image = image_details;
+            
+            if len(primary_image) == 3:
+                uuid = primary_image[0];
+                offset = primary_image[1];
+                path = primary_image[2];
+                error1 = lldb.SBError();
+                error2 = lldb.SBError();
+                cpu_type_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+4, 4, error1));
+                cpu_sub_bytes = bytearray(target.GetProcess().ReadMemory(int(offset, 16)+8, 4, error2));
+                if error1.Success() == True and error2.Success() == True:
+                    print 'got cpu type and subtype';
+                else:
+                    print 'error #1: ' + error1.GetCString() + '\nerror #2: ' + error2.GetCString();
+        
+        else:
+            print 'Invalid Process';
