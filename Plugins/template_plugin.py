@@ -44,13 +44,13 @@
 #            print '\t%s - %s' % (key, usage_dict[key]);
 #    
 #    
-#    def foo(self):
+#    def foo(self, args):
 #        print 'foo';
 #    
 #    
-#    def bar(self):
+#    def bar(self, args):
 #        print 'bar';
 #    
 #    
-#    def baz(self):
+#    def baz(self, args):
 #        print 'baz';

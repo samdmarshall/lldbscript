@@ -27,7 +27,7 @@ class reveal():
             print '\t%s - %s' % (key, usage_dict[key]);
     
     
-    def load_reveal(self):
+    def load_reveal(self, args):
         location = int(str(execute_in_lldb(True, lldb.eNoDynamicValues, 3, False, '((NSRange)[(NSString *)[[UIDevice currentDevice] model] rangeOfString:@"Simulator"]).location')).split(' ')[-1]);
         if location == 2147483647:
             _print.debuglog([_print.Colour('cyan',True), _print.String('%s', 'Loading on Device...'), _print.Colour('reset', True)]);
@@ -37,9 +37,9 @@ class reveal():
             _lldbcmd.execute('expr', '(void*)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 0x2);');
     
     
-    def start_reveal(self):
+    def start_reveal(self, args):
         _lldbcmd.execute('expr', '(void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStart" object:nil];');
     
     
-    def stop_reveal(self):
+    def stop_reveal(self, args):
         _lldbcmd.execute('expr', '(void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStop" object:nil];');

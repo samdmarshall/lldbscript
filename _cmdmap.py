@@ -22,9 +22,10 @@ def parse_command(command):
                 _print.debuglog([_print.Colour('green',True), _print.String('%s', 'Correct Number of Args...'), _print.Colour('reset', True)]);
                 command_arg = argv[index];
                 if command_arg in command_map.keys():
+                    index += 1;
                     _print.debuglog([_print.Colour('green',True), _print.String('%s', 'Valid Command Argument...'), _print.Colour('reset', True)]);
                     command_func = command_map[command_arg];
-                    command_func();
+                    command_func(argv[index:]);
                 else:
                     _print.debuglog([_print.Colour('red',True), _print.String('%s', 'Invalid Command Argument...'), _print.Colour('reset', True)]);
                 

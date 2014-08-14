@@ -91,7 +91,7 @@ class macho():
             print '\t%s - %s' % (key, usage_dict[key]);
     
     
-    def info(self):
+    def info(self, args):
         target = lldb.debugger.GetSelectedTarget();
         executable = target.GetExecutable();
         module = target.FindModule(executable);

@@ -26,13 +26,13 @@ class reload():
             print '\t%s - %s' % (key, usage_dict[key]);
     
     
-    def plugins(self):
+    def plugins(self, args):
         _plugins.load_plugins({});
     
     
-    def scripts(self):
+    def scripts(self, args):
         _scripts.load_scripts({});
     
     
-    def core(self):
+    def core(self, args):
         lldbscript.reload_scripts({});

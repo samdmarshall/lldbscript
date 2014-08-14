@@ -25,9 +25,9 @@ class debuglog():
             print '\t%s - %s' % (key, usage_dict[key]);
     
     
-    def enable(self):
+    def enable(self, args):
         _environment.set_variable(_environment.debug_log_key(), str(True));
     
     
-    def disable(self):
+    def disable(self, args):
         _environment.set_variable(_environment.debug_log_key(), str(False));
