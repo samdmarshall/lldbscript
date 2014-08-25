@@ -20,7 +20,7 @@ class debuglog():
     def print_usage(self):
         usage_dict = self.usage();
         keys = usage_dict.keys();
-        print '%s [%s]' % (type(self).__name__, string.join(keys, '|'));
+        print '%s [%s]' % (self.__class__.__name__, string.join(keys, '|'));
         for key in keys:
             print '\t%s - %s' % (key, usage_dict[key]);
     
