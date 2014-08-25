@@ -19,7 +19,11 @@ def execute_in_lldb(ignore_breakpoints, fetch_dynamic, timeout_value, all_thread
 
 
 def execute(cmd, args):
-    command = cmd + ' ' + string.join(args, ' ');
+    command = cmd + ' ';
+    if type(args) == type([]):
+        command += string.join(args, ' ');
+    else:
+        command += args;
     ci = lldb.debugger.GetCommandInterpreter();
     result = lldb.SBCommandReturnObject();
     ci.HandleCommand(command, result);

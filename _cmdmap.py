@@ -12,7 +12,7 @@ def parse_command(command):
         index = 0;
         script_command = argv[index];
         plist = _plugins.get_plugin_list();
-        valid_command = script_command in plist;
+        valid_command = script_command in plist and script_command != 'help';
         if valid_command == True:
             _print.debuglog([_print.Colour('green',True), _print.String('%s', 'Found Command!'), _print.Colour('reset', True)]);
             command_instance = _plugins.get_plugin_instance(script_command)();
