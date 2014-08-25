@@ -1,7 +1,7 @@
 lldbscript
 ==========
 
-lldbscript is a series of scripts that setup an environment that allow for easy debugging and implementing of new scripting functionality in lldb through the python APIs. I spent some time exploring how to easily interface with lldb through the embedded python scripting. This was intended to be a full scripting engine but at the moment the APIs for interacting with an existing instance of lldb (eg, from within xcode or launching lldb yourself) are lacking. So instead i've decided to release this as a way for people to drop in their own scripts and experiment with the APIs.
+lldbscript is a series of scripts that setup an environment that allows for easy debugging and implementing of new scripting functionality in lldb through the python APIs. I spent some time exploring how to easily interface with lldb through the embedded python scripting. This was intended to be a full scripting engine but at the moment the APIs for interacting with an existing instance of lldb (eg, from within xcode or launching lldb yourself) are lacking. So instead i've decided to release this as a way for people to drop in their own scripts and experiment with the APIs.
 
 
 How To Install
